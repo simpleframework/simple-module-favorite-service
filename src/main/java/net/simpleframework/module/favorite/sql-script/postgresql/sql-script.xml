@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-script>
+  <version>1.0.0</version>
+  <name>script</name>
+  <description></description>
+  <tran-sql>
+    <![CDATA[
+      create table sf_favorite (
+        id char(32) not null,
+        favoriteid char(32) not null,
+        userid char(32) not null,
+        createdate timestamp not null,
+        primary key(id),
+        unique(favoriteid, userid)
+      );
+    ]]>
+  </tran-sql>
+  <tran-sql>
+    <![CDATA[
+      create table sf_favorite_item (
+        id char(32) not null,
+        favoritemark int4 not null,
+        contentid char(32) not null,
+        topic varchar(128) not null,
+        url varchar(128) not null,
+        favorites int4 not null,
+        categoryid char(32),
+        description varchar(256),
+        primary key(id),
+        unique(favoritemark, contentid)
+      );
+    ]]>
+  </tran-sql>
+</sql-script>
