@@ -1,7 +1,6 @@
 package net.simpleframework.module.favorite.plugin;
 
 import net.simpleframework.module.common.plugin.IModulePlugin;
-import net.simpleframework.module.favorite.IFavoriteContent;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -10,14 +9,6 @@ import net.simpleframework.module.favorite.IFavoriteContent;
  *         http://www.simpleframework.net
  */
 public interface IFavoritePlugin extends IModulePlugin {
-
-	/**
-	 * 获取收藏内容对象
-	 * 
-	 * @param contentId
-	 * @return
-	 */
-	IFavoriteContent getContent(Object contentId);
 
 	/**
 	 * 获取分类的显示名称
