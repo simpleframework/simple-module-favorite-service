@@ -1,7 +1,9 @@
 package net.simpleframework.module.favorite.impl;
 
 import static net.simpleframework.common.I18n.$m;
-import net.simpleframework.ado.db.DbEntityTable;
+import net.simpleframework.ado.IADOManagerFactory;
+import net.simpleframework.ado.db.DbManagerFactory;
+import net.simpleframework.ctx.IApplicationContext;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.permission.IPermissionConst;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
@@ -20,8 +22,13 @@ public abstract class FavoriteContext extends AbstractCommonModuleContext implem
 		IFavoriteContext {
 
 	@Override
-	protected DbEntityTable[] getEntityTables() {
-		return new DbEntityTable[] { Favorite.TBL, FavoriteItem.TBL };
+	public void onInit(final IApplicationContext application) throws Exception {
+		super.onInit(application);
+
+		final IADOManagerFactory aFactory = getADOManagerFactory();
+		if (aFactory instanceof DbManagerFactory) {
+			((DbManagerFactory) aFactory).regist(Favorite.TBL, FavoriteItem.TBL);
+		}
 	}
 
 	@Override
