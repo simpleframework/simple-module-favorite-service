@@ -19,7 +19,7 @@ public class FavoriteException extends ModuleException {
 	}
 
 	public static FavoriteException of(final Throwable throwable) {
-		return (FavoriteException) _of(FavoriteException.class, null, throwable);
+		return _of(FavoriteException.class, null, throwable);
 	}
 
 	private static final long serialVersionUID = -6038341656399824481L;
