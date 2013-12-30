@@ -1,6 +1,6 @@
 package net.simpleframework.module.favorite;
 
-import net.simpleframework.ado.bean.AbstractIdBean;
+import net.simpleframework.ado.bean.AbstractDescriptionBean;
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
@@ -12,7 +12,7 @@ import net.simpleframework.common.ID;
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
-public class FavoriteItem extends AbstractIdBean {
+public class FavoriteItem extends AbstractDescriptionBean {
 	/* 收藏标识 */
 	private int favoriteMark;
 
@@ -30,9 +30,6 @@ public class FavoriteItem extends AbstractIdBean {
 
 	/* 内容所属于的类目id，没有则为空 */
 	private ID categoryId;
-
-	/* 描述 */
-	private String description;
 
 	public int getFavoriteMark() {
 		return favoriteMark;
@@ -80,14 +77,6 @@ public class FavoriteItem extends AbstractIdBean {
 
 	public void setCategoryId(final ID categoryId) {
 		this.categoryId = categoryId;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(final String description) {
-		this.description = description;
 	}
 
 	@Override
