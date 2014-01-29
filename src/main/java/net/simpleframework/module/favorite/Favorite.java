@@ -1,7 +1,6 @@
 package net.simpleframework.module.favorite;
 
 import net.simpleframework.ado.bean.AbstractUserAwareBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -23,8 +22,6 @@ public class Favorite extends AbstractUserAwareBean implements IFavoriteContextA
 	public void setFavoriteId(final ID favoriteId) {
 		this.favoriteId = favoriteId;
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(Favorite.class, "sf_favorite");
 
 	private static final long serialVersionUID = 2615241723570917053L;
 }

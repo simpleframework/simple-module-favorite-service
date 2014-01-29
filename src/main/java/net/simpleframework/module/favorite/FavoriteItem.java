@@ -1,7 +1,6 @@
 package net.simpleframework.module.favorite;
 
 import net.simpleframework.ado.bean.AbstractDescriptionBean;
-import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ado.db.common.EntityInterceptor;
 import net.simpleframework.common.ID;
 
@@ -83,8 +82,6 @@ public class FavoriteItem extends AbstractDescriptionBean {
 	public String toString() {
 		return getTopic();
 	}
-
-	public static final DbEntityTable TBL = new DbEntityTable(FavoriteItem.class, "sf_favorite_item");
 
 	private static final long serialVersionUID = 7023840125008691695L;
 }

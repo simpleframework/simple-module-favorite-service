@@ -55,8 +55,8 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 	public IDataQuery<Favorite> queryFavorites(final int favoriteMark, final Object userId,
 			final Object categoryId) {
 		Object[] params = new Object[] {};
-		String sql = "select a.* from " + Favorite.TBL.getName() + " a left join "
-				+ FavoriteItem.TBL.getName() + " b on a.favoriteId=b.id where 1=1";
+		String sql = "select a.* from " + getTablename(Favorite.class) + " a left join "
+				+ getTablename(FavoriteItem.class) + " b on a.favoriteId=b.id where 1=1";
 		if (favoriteMark > 0) {
 			sql += " and b.favoriteMark=?";
 			params = ArrayUtils.add(params, favoriteMark);
@@ -81,8 +81,8 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 		final List<CategoryStat> l = new ArrayList<CategoryStat>();
 		if (userId != null) {
 			Object[] params = new Object[] { userId };
-			String sql = "select b.categoryId, count(*) as cc from " + Favorite.TBL.getName()
-					+ " a left join " + FavoriteItem.TBL.getName()
+			String sql = "select b.categoryId, count(*) as cc from " + getTablename(Favorite.class)
+					+ " a left join " + getTablename(FavoriteItem.class)
 					+ " b on a.favoriteId=b.id where a.userId=?";
 			if (favoriteMark > 0) {
 				sql += " and b.favoriteMark=?";

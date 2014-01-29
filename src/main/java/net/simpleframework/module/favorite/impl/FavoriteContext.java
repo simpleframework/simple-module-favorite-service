@@ -21,7 +21,8 @@ public abstract class FavoriteContext extends AbstractCommonModuleContext implem
 		IFavoriteContext, IDbEntityTableRegistry {
 	@Override
 	public DbEntityTable[] createEntityTables() {
-		return new DbEntityTable[] { Favorite.TBL, FavoriteItem.TBL };
+		return new DbEntityTable[] { new DbEntityTable(Favorite.class, "sf_favorite"),
+				new DbEntityTable(FavoriteItem.class, "sf_favorite_item") };
 	}
 
 	@Override
