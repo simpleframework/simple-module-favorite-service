@@ -13,5 +13,4 @@ import net.simpleframework.module.favorite.plugin.IFavoriteContext;
 public interface IFavoriteContextAware extends IModuleContextAware {
 
 	static IFavoriteContext favoriteContext = ModuleContextFactory.get(IFavoriteContext.class);
-
 }
