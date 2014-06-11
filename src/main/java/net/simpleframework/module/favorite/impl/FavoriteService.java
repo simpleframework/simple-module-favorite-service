@@ -125,6 +125,8 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 
 	@Override
 	public void onInit() throws Exception {
+		super.onInit();
+
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
