@@ -73,7 +73,7 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 				params = ArrayUtils.add(params, categoryId);
 			}
 		}
-		return getEntityManager().queryBeans(new SQLValue(sql, params));
+		return query(new SQLValue(sql, params));
 	}
 
 	@Override
