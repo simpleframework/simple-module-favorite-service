@@ -130,7 +130,7 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 		addListener(new DbEntityAdapterEx() {
 			@Override
 			public void onBeforeDelete(final IDbEntityManager<?> service,
-					final IParamsValue paramsValue) {
+					final IParamsValue paramsValue) throws Exception {
 				super.onBeforeDelete(service, paramsValue);
 				final IDbEntityManager<FavoriteItem> service2 = getEntityManager(FavoriteItem.class);
 				for (final Favorite favorite : coll(paramsValue)) {
