@@ -89,8 +89,7 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 				params = ArrayUtils.add(params, favoriteMark);
 			}
 			sql += " and b.categoryId is not null group by b.categoryId";
-			final IDataQuery<Map<String, Object>> dq = getQueryManager().query(
-					new SQLValue(sql, params));
+			final IDataQuery<Map<String, Object>> dq = getQueryManager().query(sql, params);
 			for (Map<String, Object> m; (m = dq.next()) != null;) {
 				final String categoryId = (String) m.get("categoryId");
 				l.add(new CategoryStat(categoryId, m.get("cc")));
