@@ -126,13 +126,13 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 	public void onInit() throws Exception {
 		super.onInit();
 
-		addListener(new DbEntityAdapterEx() {
+		addListener(new DbEntityAdapterEx<Favorite>() {
 			@Override
-			public void onBeforeDelete(final IDbEntityManager<?> service,
+			public void onBeforeDelete(final IDbEntityManager<Favorite> manager,
 					final IParamsValue paramsValue) throws Exception {
-				super.onBeforeDelete(service, paramsValue);
+				super.onBeforeDelete(manager, paramsValue);
 				final IDbEntityManager<FavoriteItem> service2 = getEntityManager(FavoriteItem.class);
-				for (final Favorite favorite : coll(paramsValue)) {
+				for (final Favorite favorite : coll(manager, paramsValue)) {
 					final ID fId = favorite.getFavoriteId();
 					final int c = count("favoriteId=?", fId);
 					if (c <= 1) {
