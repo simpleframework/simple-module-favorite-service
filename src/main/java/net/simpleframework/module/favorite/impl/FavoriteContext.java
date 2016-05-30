@@ -35,6 +35,7 @@ public abstract class FavoriteContext extends AbstractCommonModuleContext implem
 
 	@Override
 	protected Module createModule() {
-		return new Module().setName(MODULE_NAME).setText($m("FavoriteContext.0")).setOrder(21);
+		return super.createModule().setName(MODULE_NAME).setText($m("FavoriteContext.0"))
+				.setOrder(21);
 	}
 }
