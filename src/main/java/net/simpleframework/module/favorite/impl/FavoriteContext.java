@@ -1,6 +1,7 @@
 package net.simpleframework.module.favorite.impl;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ado.db.DbEntityTable;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.module.common.AbstractCommonModuleContext;
@@ -15,8 +16,8 @@ import net.simpleframework.module.favorite.plugin.IFavoriteContext;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class FavoriteContext extends AbstractCommonModuleContext implements
-		IFavoriteContext {
+public abstract class FavoriteContext extends AbstractCommonModuleContext
+		implements IFavoriteContext {
 	@Override
 	protected DbEntityTable[] createEntityTables() {
 		return new DbEntityTable[] { new DbEntityTable(Favorite.class, "sf_favorite"),
@@ -35,6 +36,7 @@ public abstract class FavoriteContext extends AbstractCommonModuleContext implem
 
 	@Override
 	protected Module createModule() {
-		return new Module().setName(MODULE_NAME).setText($m("FavoriteContext.0")).setOrder(21);
+		return super.createModule().setName(MODULE_NAME).setText($m("FavoriteContext.0"))
+				.setOrder(21);
 	}
 }

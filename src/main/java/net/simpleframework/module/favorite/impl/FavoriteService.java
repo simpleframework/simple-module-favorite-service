@@ -25,8 +25,8 @@ import net.simpleframework.module.favorite.IFavoriteService;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public class FavoriteService extends AbstractDbBeanService<Favorite> implements IFavoriteService,
-		IFavoriteContextAware {
+public class FavoriteService extends AbstractDbBeanService<Favorite>
+		implements IFavoriteService, IFavoriteContextAware {
 
 	@Override
 	public FavoriteItem getFavoriteItem(final int favoriteMark, final Object contentId) {
@@ -40,7 +40,8 @@ public class FavoriteService extends AbstractDbBeanService<Favorite> implements 
 	}
 
 	@Override
-	public Favorite getFavorite(final Object userId, final int favoriteMark, final Object contentId) {
+	public Favorite getFavorite(final Object userId, final int favoriteMark,
+			final Object contentId) {
 		if (userId == null || contentId == null) {
 			return null;
 		}
