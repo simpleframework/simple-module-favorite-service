@@ -1,7 +1,9 @@
 package net.simpleframework.module.favorite;
 
 import net.simpleframework.ctx.AbstractModuleRef;
+import net.simpleframework.ctx.IContextBase;
 import net.simpleframework.ctx.ModuleContextFactory;
+import net.simpleframework.module.common.plugin.IModulePlugin;
 import net.simpleframework.module.favorite.plugin.IFavoriteContext;
 
 /**
@@ -12,6 +14,14 @@ import net.simpleframework.module.favorite.plugin.IFavoriteContext;
  *         http://www.simpleframework.net
  */
 public abstract class FavoriteRef extends AbstractModuleRef {
+	@Override
+	public void onInit(final IContextBase context) throws Exception {
+		super.onInit(context);
+
+		getModuleContext().getPluginRegistry().registPlugin(getPluginClass());
+	}
+
+	protected abstract Class<? extends IModulePlugin> getPluginClass();
 
 	@Override
 	public IFavoriteContext getModuleContext() {
