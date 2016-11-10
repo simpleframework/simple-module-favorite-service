@@ -3,8 +3,9 @@ package net.simpleframework.module.favorite;
 import net.simpleframework.ctx.AbstractModuleRef;
 import net.simpleframework.ctx.IContextBase;
 import net.simpleframework.ctx.ModuleContextFactory;
-import net.simpleframework.module.common.plugin.IModulePlugin;
+import net.simpleframework.module.common.plugin.ModulePluginFactory;
 import net.simpleframework.module.favorite.plugin.IFavoriteContext;
+import net.simpleframework.module.favorite.plugin.IFavoritePlugin;
 
 /**
  * Licensed under the Apache License, Version 2.0
@@ -21,7 +22,11 @@ public abstract class FavoriteRef extends AbstractModuleRef {
 		getModuleContext().getPluginRegistry().registPlugin(getPluginClass());
 	}
 
-	protected abstract Class<? extends IModulePlugin> getPluginClass();
+	protected abstract Class<? extends IFavoritePlugin> getPluginClass();
+
+	public IFavoritePlugin plugin() {
+		return ModulePluginFactory.get(getPluginClass());
+	}
 
 	@Override
 	public IFavoriteContext getModuleContext() {
