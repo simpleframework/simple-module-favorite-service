@@ -80,7 +80,7 @@ public class FavoriteService extends AbstractDbBeanService<Favorite>
 
 	@Override
 	public List<CategoryStat> queryCategoryItems(final int favoriteMark, final Object userId) {
-		final List<CategoryStat> l = new ArrayList<CategoryStat>();
+		final List<CategoryStat> l = new ArrayList<>();
 		if (userId != null) {
 			Object[] params = new Object[] { userId };
 			String sql = "select b.categoryId, count(*) as cc from " + getTablename(Favorite.class)
