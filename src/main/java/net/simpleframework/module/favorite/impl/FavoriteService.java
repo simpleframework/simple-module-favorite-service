@@ -55,27 +55,32 @@ public class FavoriteService extends AbstractDbBeanService<Favorite>
 
 	@Override
 	public IDataQuery<Favorite> queryFavorites(final int favoriteMark, final Object userId,
-			final Object categoryId) {
-		Object[] params = new Object[] {};
-		String sql = "select a.* from " + getTablename(Favorite.class) + " a left join "
-				+ getTablename(FavoriteItem.class) + " b on a.favoriteId=b.id where 1=1";
+			final Object content_userId, final Object categoryId) {
+		final StringBuilder sql = new StringBuilder("select a.* from ")
+				.append(getTablename(Favorite.class)).append(" a left join ")
+				.append(getTablename(FavoriteItem.class)).append(" b on a.favoriteId=b.id where 1=1");
+		final List<Object> params = new ArrayList<>();
 		if (favoriteMark > 0) {
-			sql += " and b.favoriteMark=?";
-			params = ArrayUtils.add(params, favoriteMark);
+			sql.append(" and b.favoriteMark=?");
+			params.add(favoriteMark);
 		}
 		if (userId != null) {
-			sql += " and a.userId=?";
-			params = ArrayUtils.add(params, userId);
+			sql.append(" and a.userId=?");
+			params.add(userId);
+		}
+		if (content_userId != null) {
+			sql.append(" and b.userId=?");
+			params.add(content_userId);
 		}
 		if (categoryId != null) {
 			if ("none".equals(categoryId)) {
-				sql += " and b.categoryId is null";
+				sql.append(" and b.categoryId is null");
 			} else {
-				sql += " and b.categoryId=?";
-				params = ArrayUtils.add(params, categoryId);
+				sql.append(" and b.categoryId=?");
+				params.add(categoryId);
 			}
 		}
-		return query(new SQLValue(sql, params));
+		return query(new SQLValue(sql, params.toArray()));
 	}
 
 	@Override
@@ -109,6 +114,7 @@ public class FavoriteService extends AbstractDbBeanService<Favorite>
 			favoriteItem = new FavoriteItem();
 			favoriteItem.setFavoriteMark(favoriteMark);
 			favoriteItem.setContentId(contentId);
+			favoriteItem.setUserId(content.getUserId());
 			favoriteItem.setTopic(content.getTopic());
 			favoriteItem.setUrl(content.getUrl());
 			favoriteItem.setFavorites(1);
@@ -122,6 +128,13 @@ public class FavoriteService extends AbstractDbBeanService<Favorite>
 
 		favorite.setFavoriteId(favoriteItem.getId());
 		insert(favorite);
+
+		// patch
+		final ID userId = favoriteItem.getUserId();
+		if (userId == null) {
+			favoriteItem.setUserId(content.getUserId());
+			getEntityManager(FavoriteItem.class).update(new String[] { "userid" }, favoriteItem);
+		}
 	}
 
 	@Override

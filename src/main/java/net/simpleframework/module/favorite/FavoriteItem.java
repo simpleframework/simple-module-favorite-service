@@ -7,7 +7,8 @@ import net.simpleframework.common.ID;
 /**
  * Licensed under the Apache License, Version 2.0
  * 
- * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
+ * @author 陈侃(cknet@126.com, 13910090885)
+ *         https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
 @EntityInterceptor(listenerTypes = { "net.simpleframework.module.log.EntityDeleteLogAdapter" })
@@ -17,6 +18,9 @@ public class FavoriteItem extends AbstractDescriptionBean {
 
 	/* 内容id */
 	private ID contentId;
+
+	/* 内容的userId */
+	private ID userId;
 
 	/* 标题 */
 	private String topic;
@@ -44,6 +48,14 @@ public class FavoriteItem extends AbstractDescriptionBean {
 
 	public void setContentId(final ID contentId) {
 		this.contentId = contentId;
+	}
+
+	public ID getUserId() {
+		return userId;
+	}
+
+	public void setUserId(final ID userId) {
+		this.userId = userId;
 	}
 
 	public String getTopic() {

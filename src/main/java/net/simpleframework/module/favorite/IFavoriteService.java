@@ -9,7 +9,8 @@ import net.simpleframework.module.common.bean.CategoryStat;
 /**
  * Licensed under the Apache License, Version 2.0
  * 
- * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
+ * @author 陈侃(cknet@126.com, 13910090885)
+ *         https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
 public interface IFavoriteService extends IDbBeanService<Favorite> {
@@ -31,10 +32,12 @@ public interface IFavoriteService extends IDbBeanService<Favorite> {
 	 * 
 	 * @param favoriteMark
 	 * @param userId
+	 * @param content_userId
 	 * @param categoryId
 	 * @return
 	 */
-	IDataQuery<Favorite> queryFavorites(int favoriteMark, Object userId, Object categoryId);
+	IDataQuery<Favorite> queryFavorites(int favoriteMark, Object userId, Object content_userId,
+			Object categoryId);
 
 	/**
 	 * 查找收藏的分类
